@@ -22,6 +22,7 @@
     <label for="guessField">予想: </label>
     <input type="number" min="1" max="20" id="guessField">
     <input type="submit" value="予想を入力" id="guessSubmit">
+    <p id="attemptsLeft">残り試行回数: 5回</p>
     <p id="guessResult"></p>
     <button id="resetButton" style="display:none;">もう一度遊ぶ</button>
   </div>
@@ -42,18 +43,29 @@
   let guessResult = document.querySelector('#guessResult');
 
   let resetButton = document.querySelector('#resetButton');
+  let attemptsLeft = document.querySelector('#attemptsLeft');
+  let remainingAttempts = 5;
 
   function checkGuess() {
     let userGuess = Number(guessField.value);
+    remainingAttempts--;
 
     if (userGuess === answerNumber) {
       guessResult.textContent = '正解です！';
+      attemptsLeft.textContent = '';
+      guessSubmit.disabled = true;
+      resetButton.style.display = 'inline';
+    } else if (remainingAttempts === 0) {
+      guessResult.textContent = `ゲームオーバー！正解は ${answerNumber} でした。`;
+      attemptsLeft.textContent = '残り試行回数: 0回';
       guessSubmit.disabled = true;
       resetButton.style.display = 'inline';
     } else if (userGuess < answerNumber) {
       guessResult.textContent = 'もっと大きいです';
+      attemptsLeft.textContent = `残り試行回数: ${remainingAttempts}回`;
     } else if (userGuess > answerNumber) {
       guessResult.textContent = 'もっと小さいです';
+      attemptsLeft.textContent = `残り試行回数: ${remainingAttempts}回`;
     }
   }
 
@@ -62,6 +74,8 @@
     console.log('正解は' + answerNumber);
     guessField.value = '';
     guessResult.textContent = '';
+    remainingAttempts = 5;
+    attemptsLeft.textContent = '残り試行回数: 5回';
     guessSubmit.disabled = false;
     resetButton.style.display = 'none';
   }
