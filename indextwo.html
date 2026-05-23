@@ -16,7 +16,7 @@
 <body>
 
 <main class="container">
-  <h1>数字を入れてボタンを押すと、大きい・小さい・正解を教えてくれるゲーム (1~20)</h1>
+  <h1>数字を入れてボタンを押すと、大きい・小さい・正解を教えてくれるゲーム (1~30)</h1>
   
   <div id="guessGame">
     <label for="guessField">予想: </label>
@@ -28,7 +28,7 @@
 
 <script>
   // 1から20までのランダムな整数を生成し、コンソールにログを出力
-  let answerNumber = Math.floor(Math.random() * 20) + 1;
+  let answerNumber = Math.floor(Math.random() * 30) + 1;
   console.log('正解は' + answerNumber);
 
   // 数値入力フィールドを取得
