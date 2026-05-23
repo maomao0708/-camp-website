@@ -448,9 +448,21 @@
     showQuestion();
   }
 
+  function shuffleOptions(q) {
+    const indexed = q.options.map(function(opt, i) { return { opt: opt, isAnswer: i === q.answer }; });
+    for (let i = indexed.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = indexed[i]; indexed[i] = indexed[j]; indexed[j] = tmp;
+    }
+    return indexed;
+  }
+
+  let shuffled = [];
+
   function showQuestion() {
     answered = false;
     const q = questions[current];
+    shuffled = shuffleOptions(q);
     document.getElementById("quizQuestion").textContent = q.q;
     document.getElementById("quizFeedback").textContent = "";
     document.getElementById("quizFeedback").className = "quiz-feedback";
@@ -459,10 +471,10 @@
 
     const ul = document.getElementById("quizOptions");
     ul.innerHTML = "";
-    q.options.forEach(function(opt, i) {
+    shuffled.forEach(function(item, i) {
       const li = document.createElement("li");
       const btn = document.createElement("button");
-      btn.textContent = opt;
+      btn.textContent = item.opt;
       btn.onclick = function() { selectAnswer(i); };
       li.appendChild(btn);
       ul.appendChild(li);
@@ -478,21 +490,21 @@
   function selectAnswer(index) {
     if (answered) return;
     answered = true;
-    const q = questions[current];
     const buttons = document.querySelectorAll("#quizOptions button");
     buttons.forEach(function(btn, i) {
       btn.disabled = true;
-      if (i === q.answer) btn.classList.add("correct");
+      if (shuffled[i].isAnswer) btn.classList.add("correct");
       else if (i === index) btn.classList.add("wrong");
     });
 
     const fb = document.getElementById("quizFeedback");
-    if (index === q.answer) {
+    if (shuffled[index].isAnswer) {
       fb.textContent = "正解！";
       fb.className = "quiz-feedback ok";
       score++;
     } else {
-      fb.textContent = "不正解... 正解は「" + q.options[q.answer] + "」でした！";
+      const correctOpt = shuffled.find(function(s) { return s.isAnswer; });
+      fb.textContent = "不正解... 正解は「" + correctOpt.opt + "」でした！";
       fb.className = "quiz-feedback ng";
     }
     document.getElementById("quizNext").disabled = false;
@@ -579,6 +591,120 @@
   }
 
   startQuiz();
+</script>
+
+<h2 class="kiwi-maru-regular">今日のミセス曲占い</h2>
+
+<div style="background-color:#fff; border:2px solid #a5d6a7; border-radius:12px; padding:24px; margin-top:10px; text-align:center;">
+  <p style="color:#388e3c; margin-bottom:16px;">ボタンを押して、今日聴くべきミセスの曲を占おう！</p>
+
+  <div style="position:relative; width:120px; height:120px; margin:0 auto 20px;">
+    <span id="fortuneApple" style="display:block; font-size:7rem; line-height:120px; transform-origin:center; will-change:transform;">🍏</span>
+  </div>
+
+  <button id="fortuneBtn" onclick="startFortune()" class="quiz-restart" style="margin:0 auto 20px;">占う！</button>
+
+  <div id="fortuneResult" style="display:none; margin-top:16px;">
+    <p style="color:#1b5e20; font-size:1em; margin-bottom:6px;">今日聴くべき曲は…</p>
+    <p id="fortuneSong" style="font-size:1.4em; font-weight:bold; color:#2e7d32; font-family:'Kiwi Maru', serif;"></p>
+    <p id="fortuneMessage" style="color:#555; font-size:0.95em; margin-top:8px;"></p>
+  </div>
+</div>
+
+<script>
+  const fortuneSongs = [
+    // フェーズ1（メジャーデビュー〜活動休止前）
+    { title: "StaRt", message: "今日は新しいことに挑戦する日。前向きな気持ちで踏み出そう！" },
+    { title: "WanteD! WanteD!", message: "あなたの個性が輝く日。自分らしさを全開にして！" },
+    { title: "僕のこと", message: "大切な人のことを思い出す日。気持ちを素直に伝えてみて。" },
+    { title: "青と夏", message: "爽やかな風を感じる日。外に出て夏の空気を吸い込もう！" },
+    { title: "点描の唄", message: "誰かと一緒にいたい日。大切な人に連絡してみよう。" },
+    { title: "Attitude", message: "自分の芯を持って進む日。ブレない強さを発揮できる！" },
+    { title: "Love me, Love you", message: "素直に好きって言っていい日。思いを隠さず届けよう。" },
+    { title: "サママ・フェスティバル！", message: "今日は思いっきり楽しむ日！お祭り気分で行こう！" },
+    { title: "鯨の唄", message: "壮大な海のように、心を大きく持って過ごそう。" },
+    { title: "CONFLICT", message: "迷いがある時こそ前に進む力が生まれる。立ち向かおう！" },
+    { title: "ナニヲナニヲ", message: "自分に問いかける日。本当にやりたいことを見つめて。" },
+    { title: "ロマンチシズム", message: "ロマンティックな気分に浸っていい日。感性を大切に。" },
+    { title: "It's my life", message: "あなたの人生はあなたのもの。自分らしく堂々と生きよう！" },
+    { title: "はじまり", message: "何かが始まる予感がする日。ワクワクを大切にして。" },
+    { title: "umbrella", message: "誰かの傘になれる日。優しさを周りにシェアしよう。" },
+    { title: "感電", message: "刺激的な出会いがある予感。アンテナを張って過ごそう。" },
+    { title: "愛情と矛盾", message: "複雑な気持ちも全部ひっくるめて、自分を愛そう。" },
+    { title: "In the Morning", message: "清々しい朝の始まり。今日一日、丁寧に過ごそう。" },
+    { title: "春愁", message: "少しセンチメンタルな気分。音楽に気持ちを重ねてみて。" },
+    { title: "StaRt", message: "今日は原点に返る日。初心を思い出してみよう。" },
+    // フェーズ2（再始動〜現在）
+    { title: "ダンスホール", message: "今日は踊りたい気分！楽しいことに全力で飛び込もう。" },
+    { title: "Soranji", message: "壮大な夢を描く日。空を見上げて大きく深呼吸しよう。" },
+    { title: "Magic", message: "奇跡が起きそうな予感。諦めずに信じ続けることが大切。" },
+    { title: "コロンブス", message: "未知の世界へ踏み出す日。好奇心のままに動いてみて！" },
+    { title: "ケセラセラ", message: "なるようになる！力を抜いて、流れに身を任せよう。" },
+    { title: "ライラック", message: "優しい気持ちが溢れる日。周りの人に笑顔を届けよう。" },
+    { title: "ダーリン", message: "愛情たっぷりな一日。大切な人との時間を大事にして。" },
+    { title: "インフェルノ", message: "情熱的な一日。熱くなれることに全力で取り組もう！" },
+    { title: "スターダム", message: "あなたが主役の日。自信を持って堂々と輝いて！" },
+    { title: "絶世生物", message: "唯一無二の存在感を放つ日。個性を思い切り表現して！" },
+    { title: "Numero", message: "自分だけの番号を刻む日。運命に逆らわず突き進もう！" },
+    { title: "Dear", message: "大切な誰かへの想いが溢れる日。手紙を書くような気持ちで。" },
+    { title: "We're WOMAN", message: "強く優しく、自分を誇りに思っていい日！" },
+    { title: "ロマンチシズム（再録）", message: "過去の自分と今の自分、どちらも愛おしい日。" },
+    { title: "アポロドロス", message: "神話のような壮大な一日。大きな物語の主人公になろう。" },
+    { title: "PARTY", message: "今日はパーティー気分で！楽しいことを全力で楽しんで。" },
+    { title: "青と夏", message: "爽やかな風を感じる日。外に出て夏の空気を吸い込もう！" },
+    { title: "僕のこと", message: "今日は自分自身をとことん大切にする日。" },
+    { title: "点描の唄", message: "細かいことが積み重なって、大きな絵を描く日。" },
+    { title: "Attitude", message: "全力で挑んでみよう。今日の姿勢が未来を変える！" },
+  ];
+
+  let fortuneFrame;
+  let fortuneAngle = 0;
+  let fortuneSpeed = 0;
+  let fortuneRunning = false;
+  let fortuneTargetIndex = 0;
+
+  function startFortune() {
+    if (fortuneRunning) return;
+    fortuneRunning = true;
+    document.getElementById("fortuneBtn").disabled = true;
+    document.getElementById("fortuneResult").style.display = "none";
+
+    fortuneTargetIndex = Math.floor(Math.random() * fortuneSongs.length);
+    fortuneAngle = 0;
+    fortuneSpeed = 25;
+    const totalTime = 600; // 60fps × 10秒
+    let elapsed = 0;
+
+    function spin() {
+      const progress = elapsed / totalTime;
+      const eased = 1 - Math.pow(1 - progress, 3);
+      fortuneSpeed = 25 * (1 - eased);
+      fortuneAngle += fortuneSpeed;
+
+      document.getElementById("fortuneApple").style.transform =
+        "rotate(" + fortuneAngle + "deg)";
+
+      elapsed++;
+      if (elapsed < totalTime) {
+        fortuneFrame = requestAnimationFrame(spin);
+      } else {
+        document.getElementById("fortuneApple").style.transform = "rotate(0deg)";
+        showFortune();
+      }
+    }
+
+    cancelAnimationFrame(fortuneFrame);
+    spin();
+  }
+
+  function showFortune() {
+    fortuneRunning = false;
+    document.getElementById("fortuneBtn").disabled = false;
+    const song = fortuneSongs[fortuneTargetIndex];
+    document.getElementById("fortuneSong").textContent = "「" + song.title + "」";
+    document.getElementById("fortuneMessage").textContent = song.message;
+    document.getElementById("fortuneResult").style.display = "block";
+  }
 </script>
 
 <h2 class="kiwi-maru-regular">公式リンク</h2>
