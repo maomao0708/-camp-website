@@ -46,14 +46,139 @@
       color: #2e7d32;
       font-size: 1.2em;
     }
+    img {
+      display: block;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    .side-icon {
+      position: fixed;
+      font-size: 9rem;
+      opacity: 0.4;
+      pointer-events: none;
+      user-select: none;
+    }
+    .kiwi-maru-regular {
+  font-family: "Kiwi Maru", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+    /* クイズ */
+    .quiz-container {
+      background-color: #fff;
+      border: 2px solid #a5d6a7;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 10px;
+    }
+    .quiz-question {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 16px;
+      color: #1b5e20;
+    }
+    .quiz-options {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px 0;
+    }
+    .quiz-options li {
+      margin: 8px 0;
+    }
+    .quiz-options button {
+      width: 100%;
+      padding: 10px 16px;
+      text-align: left;
+      background-color: #e8f5e9;
+      border: 2px solid #a5d6a7;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      font-family: "Kiwi Maru", serif;
+      transition: background-color 0.2s;
+    }
+    .quiz-options button:hover:not(:disabled) {
+      background-color: #c8e6c9;
+    }
+    .quiz-options button.correct {
+      background-color: #66bb6a;
+      border-color: #388e3c;
+      color: #fff;
+    }
+    .quiz-options button.wrong {
+      background-color: #ef9a9a;
+      border-color: #c62828;
+      color: #fff;
+    }
+    .quiz-feedback {
+      font-weight: bold;
+      margin-bottom: 12px;
+      min-height: 1.4em;
+    }
+    .quiz-feedback.ok { color: #2e7d32; }
+    .quiz-feedback.ng { color: #c62828; }
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .quiz-nav button {
+      padding: 8px 20px;
+      background-color: #2e7d32;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      font-family: "Kiwi Maru", serif;
+    }
+    .quiz-nav button:disabled {
+      background-color: #a5d6a7;
+      cursor: default;
+    }
+    .quiz-progress {
+      color: #388e3c;
+      font-size: 0.95em;
+    }
+    .quiz-result {
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #1b5e20;
+      padding: 16px 0 8px;
+    }
+    .quiz-restart {
+      display: block;
+      margin: 12px auto 0;
+      padding: 10px 28px;
+      background-color: #2e7d32;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      font-family: "Kiwi Maru", serif;
+    }
+
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<h1>Mrs. GREEN APPLE</h1>
+<span class="side-icon" style="left: 18px; top: 12%;">🎤</span>
+<span class="side-icon" style="left: 30px; top: 45%;">🎸</span>
+<span class="side-icon" style="left: 10px; top: 72%;">🎹</span>
+<span class="side-icon" style="right: 25px; top: 20%;">🎹</span>
+<span class="side-icon" style="right: 12px; top: 55%;">🎤</span>
+<span class="side-icon" style="right: 28px; top: 80%;">🎸</span>
+
+<h1 class="kiwi-maru-regular">Mrs. GREEN APPLE</h1>
 <img src="gazoutwo.png" alt="青リンゴ">
 
-<h2>魅力</h2>
+<h2 class="kiwi-maru-regular">魅力</h2>
 <p>
   Mrs. GREEN APPLE は、ポップ・ロックをベースにしながらも、
   クラシックやジャズのエッセンスを取り入れた独自のサウンドが魅力です。
@@ -62,7 +187,7 @@
   ライブパフォーマンスのエネルギッシュな熱量も大きな魅力のひとつです。
 </p>
 
-<h2>結成の経緯</h2>
+<h2 class="kiwi-maru-regular">結成の経緯</h2>
 <p>
   2013年に東京で結成。高校の同級生を中心に集まったメンバーで活動を開始し、
   2015年にメジャーデビューを果たしました。
@@ -70,99 +195,110 @@
   3人体制で再始動。再始動後もヒット曲を連発し、国民的バンドへと成長しました。
 </p>
 
-<h2>メンバー</h2>
+<h2 class="kiwi-maru-regular">メンバー</h2>
 <ul>
-  <li>大森元貴（ボーカル・ギター）</li>
-  <li>若井滉斗（ギター）</li>
-  <li>藤澤涼架（キーボード）</li>
+  <li>大森元貴（ボーカル・ギター）　愛称：もっくん</li>
+  <li>若井滉斗（ギター）　愛称：ひろぱ</li>
+  <li>藤澤涼架（キーボード）　愛称：涼ちゃん</li>　
 </ul>
 
-<h2>主な曲の一覧</h2>
+<h2 class="kiwi-maru-regular">主な曲の一覧</h2>
 <ul>
-  <li>StaRt（2015年）</li>
-  <li>WanteD! WanteD!（2017年）</li>
-  <li>僕のこと（2018年）</li>
-  <li>青と夏（2018年）</li>
-  <li>点描の唄（2018年）</li>
-  <li>Attitude（2019年）</li>
-  <li>ダンスホール（2022年）</li>
-  <li>Soranji（2022年）</li>
-  <li>Magic（2023年）</li>
-  <li>コロンブス（2024年）</li>
+  <li><a href="https://www.youtube.com/watch?v=OTUtF7ZxRN8" target="_blank">StaRt（2015年）</a></li>
+  <li><a href="https://www.youtube.com/watch?v=PbISczErpKY" target="_blank">WanteD! WanteD!（2017年）</a></li>
+  <li><a href="https://www.youtube.com/watch?v=xefpHEg5UIA" target="_blank">僕のこと（2018年）</a></li>
+  <li><a href="https://www.youtube.com/watch?v=m34DPnRUfMU" target="_blank">青と夏（2018年）</a></li>
+  <li><a href="https://www.youtube.com/watch?v=rWsiVWlvw2E" target="_blank">点描の唄（2018年）</a></li>
+  <li><a href="https://www.youtube.com/watch?v=ji99kh-GzTQ" target="_blank">Attitude（2019年）</a></li>
+  <li><a href="https://www.youtube.com/watch?v=x2rvSf0STBM" target="_blank">ダンスホール（2022年）</a></li>
+  <li><a href="https://www.youtube.com/watch?v=44cICMd3jW4" target="_blank">Soranji（2022年）</a></li>
+  <li><a href="https://www.youtube.com/watch?v=CN-Ja6jCweA" target="_blank">Magic（2023年）</a></li>
+  <li><a href="https://www.youtube.com/watch?v=N1XUt-ZcOf4" target="_blank">コロンブス（2024年）</a></li>
 </ul>
 
-<h2>YouTube 視聴回数ランキング（上位10曲）</h2>
+<h2 class="kiwi-maru-regular">YouTube 視聴回数ランキング（上位10曲）</h2>
 <p>※ 2024年時点のおおよその視聴回数</p>
 <table>
   <tr>
     <th>順位</th>
     <th>曲名</th>
+    <th>リンク</th>
     <th>リリース年</th>
     <th>視聴回数（目安）</th>
   </tr>
   <tr>
     <td class="rank">1位</td>
     <td>ダンスホール</td>
+    <td><a href="https://www.youtube.com/watch?v=x2rvSf0STBM" target="_blank">YouTube</a></td>
     <td>2022年</td>
     <td>約3億回以上</td>
   </tr>
   <tr>
     <td class="rank">2位</td>
     <td>Magic</td>
+    <td><a href="https://www.youtube.com/watch?v=CN-Ja6jCweA" target="_blank">YouTube</a></td>
     <td>2023年</td>
     <td>約2億回以上</td>
   </tr>
   <tr>
     <td class="rank">3位</td>
     <td>Soranji</td>
+    <td><a href="https://www.youtube.com/watch?v=44cICMd3jW4" target="_blank">YouTube</a></td>
     <td>2022年</td>
     <td>約1.5億回以上</td>
   </tr>
   <tr>
     <td class="rank">4位</td>
     <td>僕のこと</td>
+    <td><a href="https://www.youtube.com/watch?v=xefpHEg5UIA" target="_blank">YouTube</a></td>
     <td>2018年</td>
     <td>約1.2億回以上</td>
   </tr>
   <tr>
     <td class="rank">5位</td>
     <td>青と夏</td>
+    <td><a href="https://www.youtube.com/watch?v=m34DPnRUfMU" target="_blank">YouTube</a></td>
     <td>2018年</td>
     <td>約1億回以上</td>
   </tr>
   <tr>
     <td class="rank">6位</td>
     <td>WanteD! WanteD!</td>
+    <td><a href="https://www.youtube.com/watch?v=PbISczErpKY" target="_blank">YouTube</a></td>
     <td>2017年</td>
     <td>約8000万回以上</td>
   </tr>
   <tr>
     <td class="rank">7位</td>
     <td>点描の唄</td>
+    <td><a href="https://www.youtube.com/watch?v=rWsiVWlvw2E" target="_blank">YouTube</a></td>
     <td>2018年</td>
     <td>約7000万回以上</td>
   </tr>
   <tr>
     <td class="rank">8位</td>
     <td>StaRt</td>
+    <td><a href="https://www.youtube.com/watch?v=OTUtF7ZxRN8" target="_blank">YouTube</a></td>
     <td>2015年</td>
     <td>約5000万回以上</td>
   </tr>
   <tr>
     <td class="rank">9位</td>
     <td>Attitude</td>
+    <td><a href="https://www.youtube.com/watch?v=ji99kh-GzTQ" target="_blank">YouTube</a></td>
     <td>2019年</td>
     <td>約4000万回以上</td>
   </tr>
   <tr>
     <td class="rank">10位</td>
     <td>コロンブス</td>
+    <td><a href="https://www.youtube.com/watch?v=N1XUt-ZcOf4" target="_blank">YouTube</a></td>
     <td>2024年</td>
     <td>約3000万回以上</td>
   </tr>
 </table>
 
-<h2>過去のライブ・実績</h2>
+<h2 class="kiwi-maru-regular">過去のライブ・実績</h2>
 <ul>
   <li><strong>2015年</strong> — メジャーデビュー、初のワンマンライブ開催</li>
   <li><strong>2016年</strong> — 初の日本武道館公演を実現</li>
@@ -176,12 +312,18 @@
   <li><strong>2023年</strong> — 映画「THE FIRST SLAM DUNK」主題歌「Numero」を担当</li>
   <li><strong>2023年</strong> — 「Mrs. GREEN APPLE 2023 STADIUM LIVE "Atlantis"」にて初スタジアム公演、約5万人動員</li>
   <li><strong>2024年</strong> — NHK紅白歌合戦に出場、「コロンブス」で話題に</li>
+  <li><strong>2023年</strong> — 日本レコード大賞を「ケセラセラ」で受賞</li>
+  <li><strong>2024年</strong> — 日本レコード大賞を「ライラック」で受賞（2連覇）</li>
+  <li><strong>2025年</strong> — 日本レコード大賞を「ダーリン」で受賞、バンド史上初の3連覇を達成（史上3組目）</li>
+  <li><strong>2024年7月</strong> — 「ゼンジン未到とヴェルトラウム～銘銘編～」にてノエビアスタジアム神戸・横浜スタジアム公演、4日間で約15万人を動員</li>
+  <li><strong>2024年10月〜11月</strong> — 「Mrs. GREEN APPLE on "Harmony"」全国ツアー開催（全10公演）</li>
+  <li><strong>2025年</strong> — 初の5大ドームツアー「DOME TOUR 2025 "BABEL no TOH"」開催、愛知・札幌・福岡・大阪・東京の全12公演で約55万人を動員</li>
 </ul>
 
 
-<h2>ミセス初心者におすすめ！最初に聴くべき曲ガイド</h2>
+<h2 class="kiwi-maru-regular">ミセス初心者におすすめ！最初に聴くべき曲ガイド</h2>
 
-<h3>まずはこの3曲から！</h3>
+<h3 class="kiwi-maru-regular">まずはこの3曲から！</h3>
 <table>
   <tr>
     <th>曲名</th>
@@ -205,7 +347,7 @@
   </tr>
 </table>
 
-<h3>次に聴いてほしいおすすめ曲</h3>
+<h3 class="kiwi-maru-regular">次に聴いてほしいおすすめ曲</h3>
 <table>
   <tr>
     <th>曲名</th>
@@ -233,7 +375,7 @@
   </tr>
 </table>
 
-<h3>ミセスの良いところまとめ</h3>
+<h3 class="kiwi-maru-regular">ミセスの良いところまとめ</h3>
 <ul>
   <li><strong>圧倒的な歌声</strong> — 大森元貴のボーカルは高音の伸びが抜群で、感情表現が豊か</li>
   <li><strong>多彩なジャンル</strong> — ポップ・ロック・バラード・ダンスミュージックまで幅広い</li>
@@ -243,7 +385,203 @@
 </ul>
 
 
-<h2>公式リンク</h2>
+<h2 class="kiwi-maru-regular">ミセスクイズに挑戦！</h2>
+
+<div class="quiz-container" id="quizContainer">
+  <div id="quizBody">
+    <p class="quiz-question" id="quizQuestion"></p>
+    <ul class="quiz-options" id="quizOptions"></ul>
+    <p class="quiz-feedback" id="quizFeedback"></p>
+    <div class="quiz-nav">
+      <span class="quiz-progress" id="quizProgress"></span>
+      <button id="quizNext" onclick="nextQuestion()" disabled>次の問題へ</button>
+    </div>
+  </div>
+  <div id="quizResult" style="display:none;">
+    <p class="quiz-result" id="quizResultText"></p>
+    <p id="quizJams" style="display:none; text-align:center; color:#388e3c; font-size:0.9em; margin-top:4px;">※JAM'S＝ファンダム</p>
+    <button class="quiz-restart" onclick="startQuiz()">もう一度チャレンジ！</button>
+  </div>
+</div>
+
+<canvas id="confettiCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999;"></canvas>
+
+<script>
+  const questions = [
+    {
+      q: "Q1. Mrs. GREEN APPLEが結成された年はいつ？",
+      options: ["2010年", "2013年", "2016年", "2019年"],
+      answer: 1
+    },
+    {
+      q: "Q2. Mrs. GREEN APPLEのボーカル・ギターを担当しているメンバーは誰？",
+      options: ["若井滉斗", "藤澤涼架", "大森元貴", "山中綾華"],
+      answer: 2
+    },
+    {
+      q: "Q3. YouTubeの視聴回数ランキング1位の曲は？",
+      options: ["Magic", "Soranji", "青と夏", "ダンスホール"],
+      answer: 3
+    },
+    {
+      q: "Q4. Mrs. GREEN APPLEのメジャーデビュー曲は？",
+      options: ["StaRt", "WanteD! WanteD!", "僕のこと", "Attitude"],
+      answer: 0
+    },
+    {
+      q: "Q5. 日本レコード大賞を「ケセラセラ」で受賞したのは何年？",
+      options: ["2021年", "2022年", "2023年", "2024年"],
+      answer: 2
+    }
+  ];
+
+  let current = 0;
+  let score = 0;
+  let answered = false;
+
+  function startQuiz() {
+    current = 0;
+    score = 0;
+    answered = false;
+    document.getElementById("quizResult").style.display = "none";
+    document.getElementById("quizBody").style.display = "block";
+    showQuestion();
+  }
+
+  function showQuestion() {
+    answered = false;
+    const q = questions[current];
+    document.getElementById("quizQuestion").textContent = q.q;
+    document.getElementById("quizFeedback").textContent = "";
+    document.getElementById("quizFeedback").className = "quiz-feedback";
+    document.getElementById("quizProgress").textContent = (current + 1) + " / " + questions.length + " 問";
+    document.getElementById("quizNext").disabled = true;
+
+    const ul = document.getElementById("quizOptions");
+    ul.innerHTML = "";
+    q.options.forEach(function(opt, i) {
+      const li = document.createElement("li");
+      const btn = document.createElement("button");
+      btn.textContent = opt;
+      btn.onclick = function() { selectAnswer(i); };
+      li.appendChild(btn);
+      ul.appendChild(li);
+    });
+
+    if (current === questions.length - 1) {
+      document.getElementById("quizNext").textContent = "結果を見る";
+    } else {
+      document.getElementById("quizNext").textContent = "次の問題へ";
+    }
+  }
+
+  function selectAnswer(index) {
+    if (answered) return;
+    answered = true;
+    const q = questions[current];
+    const buttons = document.querySelectorAll("#quizOptions button");
+    buttons.forEach(function(btn, i) {
+      btn.disabled = true;
+      if (i === q.answer) btn.classList.add("correct");
+      else if (i === index) btn.classList.add("wrong");
+    });
+
+    const fb = document.getElementById("quizFeedback");
+    if (index === q.answer) {
+      fb.textContent = "正解！";
+      fb.className = "quiz-feedback ok";
+      score++;
+    } else {
+      fb.textContent = "不正解... 正解は「" + q.options[q.answer] + "」でした！";
+      fb.className = "quiz-feedback ng";
+    }
+    document.getElementById("quizNext").disabled = false;
+  }
+
+  function nextQuestion() {
+    current++;
+    if (current >= questions.length) {
+      showResult();
+    } else {
+      showQuestion();
+    }
+  }
+
+  function showResult() {
+    document.getElementById("quizBody").style.display = "none";
+    document.getElementById("quizResult").style.display = "block";
+    const msgs = ["もっとミセスを聴いてみよう！", "なかなかいい感じ！", "真のJAM'S認定！完璧です！"];
+    const msg = score <= 2 ? msgs[0] : score <= 4 ? msgs[1] : msgs[2];
+    document.getElementById("quizResultText").textContent =
+      "5問中 " + score + " 問正解！" + msg;
+    const jams = document.getElementById("quizJams");
+    if (score === questions.length) {
+      jams.style.display = "block";
+      launchConfetti();
+    } else {
+      jams.style.display = "none";
+    }
+  }
+
+  function launchConfetti() {
+    const canvas = document.getElementById("confettiCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ["#2e7d32", "#66bb6a", "#a5d6a7", "#ffee58", "#ef9a9a", "#ffffff", "#ff80ab", "#40c4ff"];
+    const pieces = Array.from({ length: 180 }, function() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * -canvas.height,
+        w: Math.random() * 10 + 6,
+        h: Math.random() * 6 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        angle: Math.random() * Math.PI * 2,
+        speed: Math.random() * 4 + 3,
+        spin: (Math.random() - 0.5) * 0.2,
+        drift: (Math.random() - 0.5) * 2
+      };
+    });
+
+    let frame;
+    const duration = 300; // 60fps × 300 = 約5秒
+    let elapsed = 0;
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(function(p) {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.angle);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+        p.y += p.speed;
+        p.x += p.drift;
+        p.angle += p.spin;
+        if (p.y > canvas.height) {
+          p.y = -20;
+          p.x = Math.random() * canvas.width;
+        }
+      });
+      elapsed++;
+      if (elapsed < duration) {
+        frame = requestAnimationFrame(draw);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    cancelAnimationFrame(frame);
+    elapsed = 0;
+    draw();
+  }
+
+  startQuiz();
+</script>
+
+<h2 class="kiwi-maru-regular">公式リンク</h2>
 <ul>
   <li><a href="https://www.youtube.com/@MrsGREENAPPLE" target="_blank">公式YouTube — Mrs. GREEN APPLE</a></li>
   <li><a href="https://www.instagram.com/mrsgreen_apple/" target="_blank">公式Instagram — @mrsgreen_apple</a></li>
